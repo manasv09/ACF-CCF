@@ -59,19 +59,6 @@ class Correlation(object):
         # print('\t Padded sequence B -> %s\n' % data_j)
         return (x_i @ x_j) / N
 
-    def autocorrelate(self, x, tau):
-        N = x.shape[0]
-        if tau >= N:
-            delta = tau - N + 1
-            return np.asarray(np.correlate(x, x, 'full').tolist()[N - 1:] + [0] * delta) / N
-        elif tau <= -N:
-            delta = abs(tau + N) + 1
-            return np.asarray([0] * delta + np.correlate(x, x, 'full').tolist()[:N]) / N
-        elif tau > 0:
-            return np.correlate(x, x, 'full')[N - 1:tau + N] / N
-        else:
-            return np.correlate(x, x, 'full')[tau + N - 1:N] / N
-
     def ccf(self, x, y, tau):
         if tau >= x.shape[0]:
             return np.asarray([0])
@@ -98,6 +85,19 @@ class Correlation(object):
         # print('\t Padded sequence B -> %s\n' % data_j)
         return (x @ y) / N
 
+    def autocorrelate(self, x, tau):
+        N = x.shape[0]
+        if tau >= N:
+            delta = tau - N + 1
+            return np.asarray(np.correlate(x, x, 'full').tolist()[N - 1:] + [0] * delta) / N
+        elif tau <= -N:
+            delta = abs(tau + N) + 1
+            return np.asarray([0] * delta + np.correlate(x, x, 'full').tolist()[:N]) / N
+        elif tau > 0:
+            return np.correlate(x, x, 'full')[N - 1:tau + N] / N
+        else:
+            return np.correlate(x, x, 'full')[tau + N - 1:N] / N
+
     def crosscorrelate(self, x, y, tau):
         N = max(x.shape[0], y.shape[0])
         if tau >= x.shape[0]:
@@ -116,21 +116,35 @@ class Correlation(object):
             ordinates = np.arange(tau + 1)
         else:
             ordinates = np.arange(tau, 1)
-        # if len(ordinates) != len(self.outputs):
-        #     if self.tau >= 0:
-        #         ordinates.append(self.tau)
-        #     else:
-        #         ordinates.append(0)
         # print('\tTau Values ->         %s' % ordinates)
         # print('\tCorrelation Values -> %s' % self.outputs)
-        # print(self.outputs)
-        plt.plot(ordinates, self.outputs, 'r.')
-        plt.plot(ordinates, self.op, 'bo', alpha=0.5, ms=10)
+        fig, axs = plt.subplots(2, 2)
+
+        (ax1, ax2), (ax3, ax4) = axs
+
+        ax1.plot(ordinates, self.outputs, 'b.', alpha=0.5, ms=10)
+        ax1.plot(ordinates, self.outputs, 'r-')
+        ax1.set_title("Implemented function for tau=%i" % self.tau)
+        ax1.set_ylabel('Correlation value')
+
+        ax2.plot(ordinates, self.op, 'r.', alpha=0.5, ms=10)
+        ax2.plot(ordinates, self.op, 'b-', alpha=0.5, ms=10)
+        ax2.set_title("Built-in function for tau=%i" % self.tau)
+        ax2.set_ylabel('Correlation value')
+
+        ax3.plot(ordinates, self.outputs, 'b-')
+        ax3.plot(ordinates, self.op, 'r-', alpha=0.5, ms=10)
+        ax3.set_title("Superimposed plots for tau=%i" % self.tau)
+        ax3.set_ylabel('Correlation value')
+
+        ax4.axis('off')
+
+        plt.subplots_adjust(hspace=0.5, wspace=0.5)
         plt.show()
 
 
 if __name__ == '__main__':
-    option = bool(int(input('Provide one of the options \n\t 0 -> Use a text file to provide input\n\t 1-> Provide input in terminal\n')))
+    option = bool(int(input('Provide one of the options \n\t 0 -> Use a text file to provide input\n\t 1 -> Provide input in terminal\n')))
     if option:
         first_samp_i, last_samp_i, num_samp_i = [int(i) for i in input("Enter LeastValue MaximumValue Size for sequence A:\n").strip().split()]
         data_i = np.random.randint(first_samp_i, last_samp_i, num_samp_i)
