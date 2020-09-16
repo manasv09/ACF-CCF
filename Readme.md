@@ -308,7 +308,7 @@ if __name__ == '__main__':
 
 
     
-![svg](plots/GP503_6_1.svg)
+![png](plots/GP503_6_1.png)
     
 
 
@@ -320,7 +320,7 @@ if __name__ == '__main__':
 
 
     
-![svg](plots/GP503_6_3.svg)
+![png](plots/GP503_6_3.png)
     
 
 
@@ -336,7 +336,7 @@ if __name__ == '__main__':
 
 
     
-![svg](plots/GP503_6_5.svg)
+![png](plots/GP503_6_5.png)
     
 
 
@@ -352,7 +352,7 @@ if __name__ == '__main__':
 
 
     
-![svg](plots/GP503_6_7.svg)
+![png](plots/GP503_6_7.png)
     
 
 
