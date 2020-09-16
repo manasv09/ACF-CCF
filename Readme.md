@@ -1,40 +1,38 @@
-# Assignment - Computing ACF & CCF of time series signals {-}
-### Manas Vashistha (17D070064) {-}
-
+# Computing ACF & CCF of time series signals 
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt 
 ```
 
-# Code  {-}
+# Code 
 The Correlation class below implements the following methods-
 
 - **__init__**(self, algo): Initializes a Correlation object. **algo** = **'acf'** or **'ccf'**.
 
 - __call__(self, x, tau, y): This function takes 2 parameters if algo = **acf** and 3 parameters if algo = **ccf** and one additional parameter **tau**(lag) for which the **acf** or **ccf** needs to be printed.
 
-## Assignment 01 functions- {-}
+## Assignment 01 functions- 
 - **acf**(self, x): Returns the normalized acf of a time series signal **x** over integer values in the interval (-100, 100).
 
 - **ccf**(self, x, y): Returns the normalized ccf of time series signal **x** & **y** over integer values in the interval (-100, 100).
 
-## Assignment 02 functions- {-}
+## Assignment 02 functions- 
 - **autocorrelate**(self,x): Returns the acf computed using **numpy.correlate**(x, x, 'full') after normalization.
 
 - **crosscorrelate**(self, x, y): Returns the ccf  of x & y computed using **numpy.correlate**(x, y, 'full') after normalization.
 
-## Plotting function- {-}
+## Plotting function- 
 
 - **plot**(self): Plots the values of acf/ccf w.r.t integer values in the interval (-100, 100).
 
 
 
-# Algorithms {-}
+# Algorithms 
 
 - Let **X** and **Y** be two distinct time series signals of dimensions 1xM and 1xN respectively.
 
-## Computng ACF {-}
+## Computng ACF 
 
 - We iterate using a variable $\tau\,\epsilon\,[0, M-1]$ such that-
 
@@ -42,7 +40,7 @@ The Correlation class below implements the following methods-
 
 - Then we use the property $\phi(\tau)$ = $\phi(-\tau)$ to get the remaining values in the ACF.
 
-## Computng CCF {-}
+## Computng CCF 
 
 - First iteration with variable $\tau \,\epsilon\, [0, M-1]$, we obtain-
 
@@ -205,13 +203,13 @@ class Correlation(object):
         plt.show()
 ```
 
-# Input format-  {-}
+# Input format-  
 
 1. Run the file in the terminal using `python3 assign1.py`
 
 2. Enter **0** for providing input using a **.txt file** or, **1** for providing input in terminal.
 
-## Terminal input format- {-}
+## Terminal input format- 
 
 1. Enter three space seperated integers **least_value** **max_value** **size** for series A.
 
@@ -221,7 +219,7 @@ class Correlation(object):
 
     - If algo type **ccf**, enter three space seperated integers **least_value** **max_value** **size** for series B.
 
-## Input file format- {-}
+## Input file format- 
 
 Multiple inputs can be provided at once and plots of all can be viewed in a sequential manner. Sample input format shown below-
 
@@ -238,7 +236,7 @@ Multiple inputs can be provided at once and plots of all can be viewed in a sequ
 > Line 4 specifies the **least_value** **max_value** **size** for series A for secod input. Line 5 is the value of **tau**. Line 6 is the algo type. If **ccf** then the next line should contain **least_value** **max_value** **size** for series B.
 
 
-## Sample input file (input.txt) {-}
+## Sample input file (input.txt) 
 
     -500 500 5000
     4000
@@ -310,7 +308,7 @@ if __name__ == '__main__':
 
 
     
-![svg](GP503_files/GP503_6_1.svg)
+![svg](plots/GP503_6_1.svg)
     
 
 
@@ -322,7 +320,7 @@ if __name__ == '__main__':
 
 
     
-![svg](GP503_files/GP503_6_3.svg)
+![svg](plots/GP503_6_3.svg)
     
 
 
@@ -338,7 +336,7 @@ if __name__ == '__main__':
 
 
     
-![svg](GP503_files/GP503_6_5.svg)
+![svg](plots/GP503_6_5.svg)
     
 
 
@@ -354,7 +352,7 @@ if __name__ == '__main__':
 
 
     
-![svg](GP503_files/GP503_6_7.svg)
+![svg](plots/GP503_6_7.svg)
     
 
 
