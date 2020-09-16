@@ -1,9 +1,9 @@
 # Computing ACF & CCF of time series signals 
 
-```python
+<!-- ```python
 import numpy as np
 import matplotlib.pyplot as plt 
-```
+``` -->
 
 # Code 
 The Correlation class below implements the following methods-
@@ -65,7 +65,7 @@ Finally we divide all the values obtained by either **ACF** or **CCF** by the ma
 
 
 
-```python
+<!-- ```python
 class Correlation(object):
 
     def __init__(self, algo):
@@ -201,7 +201,7 @@ class Correlation(object):
         plt.legend((line1, line2), ('Implemented function', 'Inbuilt function'))
 
         plt.show()
-```
+``` -->
 
 # Input format-  
 
@@ -256,7 +256,7 @@ Multiple inputs can be provided at once and plots of all can be viewed in a sequ
 After we run the code for this sample input we get the plots as shown below-
 
 
-```python
+<!-- ```python
 if __name__ == '__main__':
     option = bool(int(input('Choose one of the following options \n\t 0 -> Use a text file to provide input\n\t 1 -> Provide input in terminal\n')))
     np.random.seed(99)
@@ -298,7 +298,7 @@ if __name__ == '__main__':
             else:
                 print('UndefinedParameter passed. Valid values are "acf" and "ccf"\n')
             line = file.readline()
-```
+``` -->
 
     
     	ACF value (my implementation)    for 4000 -> -0.002125
